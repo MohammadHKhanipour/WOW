@@ -1,0 +1,34 @@
+﻿@page "/showpersons"
+
+<h3>ShowPersons</h3>
+
+@if (persons == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>PaidCount</th>
+                <th>UsedCount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in persons)
+            {
+                <tr>
+                    <td>@person.Name</td>
+                    <td>@person?.PaidFor?.Count</td>
+                    <td>@person?.Used?.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<Person> persons = InitializeData.Persons;
+}
