@@ -21,8 +21,22 @@ else
             {
                 <tr>
                     <td>@person.Name</td>
-                    <td>@person?.PaidFor?.Count</td>
-                    <td>@person?.Used?.Count</td>
+                    @if(@person?.PaidFor == null)
+                    {
+                        <td>0</td>
+                    }
+                    else
+                    {
+                        <td>@person?.PaidFor?.Count</td>
+                    }
+                    @if (@person?.Used == null)
+                    {
+                        <td>0</td>
+                    }
+                    else
+                    {
+                        <td>@person?.Used?.Count</td>
+                    }
                 </tr>
             }
         </tbody>
