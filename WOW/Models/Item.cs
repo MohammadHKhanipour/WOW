@@ -1,10 +1,10 @@
 ﻿namespace WOW.Models
 {
-    public class Person
+    public class Item
     {
         public Guid Id { get; set; } = new();
         public string Name { get; set; } = string.Empty;
-        public List<Item>? PaidFor { get; set; }
-        public List<Item>? Used { get; set; }
+        public int Count { get; set; }
+        public decimal Price { get; set; }
     }
 }
