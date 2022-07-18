@@ -4,45 +4,60 @@
 
 @if (persons == null)
 {
-    <p><em>Loading...</em></p>
+	<p><em>Loading...</em></p>
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>PaidCount</th>
-                <th>UsedCount</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var person in persons)
-            {
-                <tr>
-                    <td>@person.Name</td>
-                    @if(@person?.PaidFor == null)
-                    {
-                        <td>0</td>
-                    }
-                    else
-                    {
-                        <td>@person?.PaidFor?.Count</td>
-                    }
-                    @if (@person?.Used == null)
-                    {
-                        <td>0</td>
-                    }
-                    else
-                    {
-                        <td>@person?.Used?.Count</td>
-                    }
-                </tr>
-            }
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>PaidCount</th>
+				<th>UsedCount</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var person in persons)
+			{
+				<tr>
+					<td>@person.Name</td>
+					@if (@person?.PaidFor == null)
+					{
+						<td>0</td>
+					}
+					else
+					{
+						<td>@person?.PaidFor?.Count</td>
+					}
+					@if (@person?.Used == null)
+					{
+						<td>0</td>
+					}
+					else
+					{
+						<td>@person?.Used?.Count</td>
+					}
+				</tr>
+			}
+		</tbody>
+	</table>
+	<input @bind="NewName" placeholder="Enter Name" />
+	<button @onclick="Submit">Submit</button>
+
 }
 
 @code {
-    List<Person> persons = InitializeData.Persons;
+	List<Person> persons = InitializeData.Persons;
+
+	private string NewName = string.Empty;
+
+	private void Submit()
+	{
+		InitializeData.Persons.Add(new Person
+			{
+				Name = NewName,
+				PaidFor = null,
+				Used = null
+			});
+	}
 }

@@ -14,6 +14,8 @@ else
                 <th>Name</th>
                 <th>Price</th>
                 <th>Count</th>
+                <th>PaidBy</th>
+                <th>UsedByCount</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +25,8 @@ else
                     <td>@item.Name</td>
                     <td>@item.Price</td>
                     <td>@item.Count</td>
+                    <td>@item.PaidBy?.Name</td>
+                    <td>@item.UsedBy?.Count</td>
                 </tr>
             }
         </tbody>
