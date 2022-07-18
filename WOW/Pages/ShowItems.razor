@@ -1,10 +1,10 @@
 ﻿@page "/showitems"
 
-<h3>ShowItems</h3>
+<h3>Items</h3>
 
-@if (items == null)
+@if (items.Count == 0)
 {
-    <p><em>Loading...</em></p>
+    <p><em>No Items Found</em></p>
 }
 else
 {
@@ -32,7 +32,33 @@ else
         </tbody>
     </table>
 }
+<div class="d-flex flex-column justify-content-center mx-auto">
+    <input @bind="NewName" placeholder="Enter Name" />
+    <input @bind="NewPrice" placeholder="Enter Price" />
+    <input @bind="NewCount" placeholder="Enter Count" />
+    <button @onclick="Submit" class="btn btn-primary">Submit</button>
+</div>
 
 @code {
-	List<Item> items = InitializeData.Items;
+    List<Item> items = InitializeData.Items;
+
+    private string NewName = string.Empty;
+    private decimal NewPrice;
+    private int NewCount;
+
+    private void Submit()
+    {
+        InitializeData.Items.Add(new Item
+        {
+            Name = NewName,
+            Price = NewPrice,
+            Count = NewCount,
+            PaidBy = null,
+            UsedBy = null
+        });
+
+        NewName = string.Empty;
+        NewPrice = default;
+        NewCount = default;
+    }
 }
